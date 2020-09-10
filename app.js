@@ -3,6 +3,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const ToDoModel = require('./models/ToDo');
 const moment = require('moment');
+const connection = require('./connection/connect');
+const cron = require('node-cron');
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -46,6 +48,19 @@ app.get('/list', function (req, res) {
             return reject(error)
         })
     }
+});
+
+cron.schedule("*/1 * * * *", async function () {
+    console.log('----cron running successfully----');
+    var date = new Date();
+    const docs = await ToDoModel.deleteMany({ 'expiryDate': { $lte: date } }).exec();
+    console.log(docs);
+    return "Success"
+
+    // , (err) => {
+    //     if(err) return console.log("Error while erasing users " + err);
+    //     console.log("Sucessfully Removed Data");
+    // }
 });
 
 
