@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const ToDoModel = require('./models/ToDo');
 const moment = require('moment');
 
 
@@ -26,6 +27,20 @@ app.post('/add', function (req, res) {
         ToDoModel(data).save().then((saveresult) => {
             return res.json({
                 success: true
+            })
+        }).catch(error => {
+            return reject(error)
+        })
+    }
+});
+
+app.get('/list', function (req, res) {
+    if (!req.query._id) {
+        res.send("Parameter Missing")
+    } else {
+        ToDoModel.findOne({ "_id": req.query._id }).then(result => {
+            return res.json({
+                data: result
             })
         }).catch(error => {
             return reject(error)
