@@ -7,7 +7,7 @@ var connect = function () {
                 return reject(error);
             }
             process.conn1 = mongoose.connection;
-            console.log('B2C successfully connected!');
+            console.log('database successfully connected!');
             return resolve(true);
         });
     });
