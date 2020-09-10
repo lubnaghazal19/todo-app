@@ -1,0 +1,19 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "description": "There are two APIs in this project /add with POST method to enter records in database, and /list with GET method to fetch data from database.   A cron is scheduled which runs after every 1 minute and checks if the duration of the task has expired. If so, it deletes the document from collection.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lubnaghazal19/todo-app.git"
+  },
+  "author": "lubna ghazal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lubnaghazal19/todo-app/issues"
+  },
+  "homepage": "https://github.com/lubnaghazal19/todo-app#readme"
+}
